@@ -41,7 +41,7 @@ def checkPassportStatus(msg):
     userMsg = msg.text
 
     try:
-        if userMsg.startswith("MU"):
+        if userMsg.startswith("M"):
             params = {
                 'applicationNumber': userMsg,
             }
