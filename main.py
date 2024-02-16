@@ -90,19 +90,3 @@ def checkPassportStatus(msg):
 
 
 bot.infinity_polling()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
