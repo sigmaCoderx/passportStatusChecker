@@ -41,16 +41,15 @@ def checkPassportStatus(msg):
     userMsg = msg.text
 
     try:
-        if userMsg.startswith("M"):
-            params = {
-                'applicationNumber': userMsg,
-            }
+        params = {
+            'applicationNumber': userMsg,
+        }
 
-            response = requests.get(
-                'https://epassportservicesaddt.azurewebsites.net/Request/api/V1.0/Request/GetRequestsByApplicationNumber',
-                params=params,
-                headers=headers,
-            )
+        response = requests.get(
+            'https://epassportservicesaddt.azurewebsites.net/Request/api/V1.0/Request/GetRequestsByApplicationNumber',
+            params=params,
+            headers=headers,
+        )
 
             data = json.loads(response.text)
             #print(data)
