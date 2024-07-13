@@ -1,4 +1,5 @@
 
+
 import json
 import requests
 from telebot import TeleBot,types,util
@@ -51,38 +52,35 @@ def checkPassportStatus(msg):
             headers=headers,
         )
 
-            data = json.loads(response.text)
-            #print(data)
-            # return the application number 
-            applicationNumber = data["serviceRequest"]["personResponses"]["applicationNumber"]
-            # return the person's first name 
-            firstName = data["serviceRequest"]["personResponses"]["firstName"]
-            # return the person's father name
-            middleName = data["serviceRequest"]["personResponses"]["middleName"]
-            # return the person's grand pa's name huh
-            lastName = data["serviceRequest"]["personResponses"]["lastName"]
-            # return the payments status
-            paymentStatus = data["serviceRequest"]["requestStatus"]
-            # return whether it's paid or not
-            isPaid = data["serviceRequest"]["personResponses"]["personStatus"]
+        data = json.loads(response.text)
+        #print(data)
+        # return the application number 
+        applicationNumber = data["serviceRequest"]["personResponses"]["applicationNumber"]
+        # return the person's first name 
+        firstName = data["serviceRequest"]["personResponses"]["firstName"]
+        # return the person's father name
+        middleName = data["serviceRequest"]["personResponses"]["middleName"]
+        # return the person's grand pa's name huh
+        lastName = data["serviceRequest"]["personResponses"]["lastName"]
+        # return the payments status
+        paymentStatus = data["serviceRequest"]["requestStatus"]
+        # return whether it's paid or not
+        isPaid = data["serviceRequest"]["personResponses"]["personStatus"]
 
-            # return the passport's page
-            passportPage = data["serviceRequest"]["personResponses"]["passportRes"]["passportPage"]
-            # return the appointment date
-            appointmentDate = data["serviceRequest"]["appointmentResponse"]["date"]
-            # return the appointment office
-            appointmentOffice = data["serviceRequest"]["office"]
-            # return the delivery date
-            deliveryDate = data["serviceRequest"]["deliveryDateDisplay"]
-            # return the passport delivery site or place
-            deliverySite = data["serviceRequest"]["deliverySite"]
+        # return the passport's page
+        passportPage = data["serviceRequest"]["personResponses"]["passportRes"]["passportPage"]
+        # return the appointment date
+        appointmentDate = data["serviceRequest"]["appointmentResponse"]["date"]
+        # return the appointment office
+        appointmentOffice = data["serviceRequest"]["office"]
+        # return the delivery date
+        deliveryDate = data["serviceRequest"]["deliveryDateDisplay"]
+        # return the passport delivery site or place
+        deliverySite = data["serviceRequest"]["deliverySite"]
 
-            beautify = "*"
-            userData = f"""\nApplication number: <code>{applicationNumber}</code>\nFull Name: <b>{firstName} {middleName} {lastName}</b>  {beautify*50}\nPayment Status:{paymentStatus}<b> {isPaid} </b> \nPassport page: {passportPage}\nAppointment date: <b>{appointmentDate} GC\nAppointment place:</b> {appointmentOffice}\nDelivery date: {deliveryDate} GC \nDelivery site/place: {deliverySite} {beautify*50}"""
-            bot.send_message(msg.chat.id,userData,reply_markup=button,parse_mode="HTML")
-
-        else:
-            bot.reply_to(msg,"Please send correct Application number:)")
+        beautify = "*"
+        userData = f"""\nApplication number: <code>{applicationNumber}</code>\nFull Name: <b>{firstName} {middleName} {lastName}</b>  {beautify*50}\nPayment Status:{paymentStatus}<b> {isPaid} </b> \nPassport page: {passportPage}\nAppointment date: <b>{appointmentDate} GC\nAppointment place:</b> {appointmentOffice}\nDelivery date: {deliveryDate} GC \nDelivery site/place: {deliverySite} {beautify*50}"""
+        bot.send_message(msg.chat.id,userData,reply_markup=button,parse_mode="HTML")
 
     except Exception as e:
         bot.reply_to(msg,text="Something went wrong!",reply_markup=button)
