@@ -23,8 +23,8 @@ headers = {
     'sec-ch-ua-platform': '"Windows"',
 }
 
-
-bot = TeleBot("6858528333:AAFUm52adIKa9Nkudm0OuE38SU6MrXonQ3Y",parse_mode="HTML")
+BOT_TOKEN = "<YOU API>"
+bot = TeleBot(BOT_TOKEN,parse_mode="HTML")
 
 button = InlineKeyboardMarkup()
 group = InlineKeyboardButton(text="Group",url="t.me/neuralg")
@@ -87,3 +87,4 @@ def checkPassportStatus(msg):
 
 
 bot.infinity_polling()
+
